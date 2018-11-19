@@ -1,13 +1,15 @@
 {
   "name": "ember-large-list",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Alternative and simpler approach to ember-collections for rendering large arrays to dom",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "collection",
+    "array"
   ],
-  "repository": "",
+  "repository": "git@github.com:foxnewsnetwork/ember-large-list.git",
   "license": "MIT",
-  "author": "",
+  "author": "Thomas Chen",
   "directories": {
     "doc": "doc",
     "test": "tests"

@@ -1,7 +1,9 @@
 ember-large-list
 ==============================================================================
 
-[Short description of the addon.]
+Want to render a large list of items in paginated groups, but Ember's DOM teardowns and setups are reducing performance, and "canonical" smoke-and-mirrors patterns (e.g. [ember-collection](https://www.npmjs.com/package/ember-collection)) is causing memory-leak crashes?
+
+This addon is for you.
 
 Installation
 ------------------------------------------------------------------------------
@@ -10,12 +12,60 @@ Installation
 ember install ember-large-list
 ```
 
+It's also up to you to provide the `compute` [template helper](https://www.npmjs.com/package/ember-composable-helpers#compute).
+
+This repo just sorta assumes you have it. (see [how to implement](https://github.com/DockYard/ember-composable-helpers/blob/master/addon/helpers/compute.js))
 
 Usage
 ------------------------------------------------------------------------------
 
-[Longer description of how to use the addon in apps.]
+```hbs
+<ul>
+  {{#large-list items=data start=0 perPage=5 as |item|}}
+    {{my-row-presentation data=item}}
+  {{/large-list}}
+</ul>
+```
 
+
+### How does it work?
+
+Very simple, instead of using `each`, we use `n.times`. Consider the following pseudo-code hbs
+
+`large-list/component.js`
+```javascript
+Component.extend({
+  startIndex: 0,
+  perPage: 5,
+  bigArray: [
+    { name: 'God of War', icon: 'images/god-of-war.png' },
+    // ...
+  ]
+});
+```
+`large-list/template.hbs`
+```hbs
+{{#let (take bigArray startIndex perPage) as |smallArray|}}
+  {{#n-times perPage do |index|}}
+    {{my-row-presentation data=(get smallArray index)}}
+  {{/n-times}}
+{{/let}}
+```
+
+And that's it! Instead of depending on `each` to iterate through out array, we use generic helpers `let`, `take`, and `n-times` and suddenly, we guarantee ourselves the following:
+
+- only `perPage=5` elements are ever rendered to dom
+- no custom manipulation of DOM (e.g. `this.element`) happens
+- no weird `registerChild` anti-pattern
+
+### Do I Even Need This Addon?
+
+Not really, given how simple the actual solution to performant rendering is, all you need is the `take` helper and the `n-times` component
+
+However, this addon does provide the helpful following
+
+- scroll support
+- action support
 
 Contributing
 ------------------------------------------------------------------------------

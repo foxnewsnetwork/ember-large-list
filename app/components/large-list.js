@@ -1,0 +1,1 @@
+export { default } from 'ember-large-list/components/large-list';
