@@ -1,0 +1,3 @@
+{{#on-load (action this.registerScrollListener @on-wheel) as |unregister|}}
+  {{on-destroy unregister}}
+{{/on-load}}

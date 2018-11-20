@@ -1,0 +1,22 @@
+<h3>
+  Total Games: {{this.model.length}}
+</h3>
+
+<div class="list-group">
+  {{#large-list items=this.model startIndex=this.startIndex perPage=this.perPage as |game index|}}
+    {{game-row game=game}}
+  {{else}}
+    <div class="list-group-item">
+      <h5>Placeholder Tile! -- {{index}}</h5>
+    </div>
+  {{/large-list}}
+</div>
+
+<ul>
+  <li>
+    Page: {{this.currentPage}} of {{this.totalPages}}
+  </li>
+  <li>{{this.perPage}} per page</li>
+</ul>
+
+{{on-wheel (action this.onMouseWheel)}}

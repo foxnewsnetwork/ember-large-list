@@ -7,6 +7,5 @@ export default Component.extend({
   tagName: '',
   UTILS,
   startIndex: 0,
-  perPage: 5,
-  items: []
+  perPage: 5
 });
