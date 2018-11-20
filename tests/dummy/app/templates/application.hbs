@@ -1,12 +1,40 @@
+<header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+  <a href="https://github.com/foxnewsnetwork/ember-large-list" class="navbar-brand mr-0 mr-md-2">
+    EmberLargeList
+  </a>
+</header>
+
 <div class="container-fluid">
-  <div class="row">
-    <div class="col">
-      <h2 id="title">Welcome to Ember</h2>
+  <div class="row flex-xl-wrap">
+    <div class="col-12 col-md-3 col-xl-2 bd-sidebar">
+      <nav class="collapse bd-links">
+        <div class="bd-toc-item">
+          {{#link-to "home" class="bd-toc-link"}}
+            Demo
+          {{/link-to}}
+        </div>
+        <div class="bd-toc-item">
+          {{#link-to "how-it-works" class="bd-toc-link"}}
+            How it Works
+          {{/link-to}}
+        </div>
+      </nav>
     </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      {{outlet}}
+    <div class="d-none d-xl-block col-xl-2 bd-toc">
+      <ul class="section-nav">
+        <li class="toc-entry toc-h2">
+          <a href="https://mixer.com/">
+            Demo data curtesy of Mixer
+          </a>
+        </li>
+      </ul>
     </div>
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+      <div class="row">
+        <div class="col">
+          {{outlet}}
+        </div>
+      </div>
+    </main>
   </div>
 </div>

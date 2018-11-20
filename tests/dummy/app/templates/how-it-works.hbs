@@ -1,0 +1,37 @@
+<h3>How it Works</h3>
+
+<p>The idea is very simple; we don't use ember's <code>#each</code> to iterate over our data</p>
+
+<p>Instead, we control how many elements are rendered to DOM by using something like <code>n.times do { ... }</code></p>
+
+<h4>Large List Component</h4>
+
+<p>The key take-away is that we:</p>
+
+<ul>
+  <li>iterate over a controlled range instead of our data</li>
+  <li>slice up our input data array into a smaller array</li>
+</ul>
+{{code-snippet name="addon|templates|components|large-list.hbs"}}
+
+<p>With these two key insights, we no longer need to do any DOM manipulation on our own</p>
+
+{{code-snippet name="addon|components|large-list.js"}}
+
+<h4>UTILS</h4>
+
+<p>All the magic (or lack thereof) happens in the UTILS</p>
+
+{{code-snippet name="addon|utils|fn.js"}}
+
+<p>Amazingly enough, they're all just one-line functions.</p>
+
+<p>We invoke all of them with the <code>compute</code> helper (the <strong>ONLY</strong> dependency of this addon)</p>
+
+{{code-snippet name="helpers|compute.js"}}
+
+<h4>Whaaa? Iterators?</h4>
+
+<p>The eagle-eyed developer may have noticed that <code>range</code> is a generator; and yes, ember's each works with iterators out of the box!</p>
+
+<div style="position: relative; height: 0px; overflow: hidden; max-width: 100%; padding-bottom: 56.25%;"><iframe src="https://ember-twiddle.com/9d4365b15cc445b6966cb06cef861f6f?fullScreen=true" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;"></iframe></div>

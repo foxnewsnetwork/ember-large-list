@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import layout from './template';
 import * as UTILS from 'dummy/utils/fn';
 
-const isDown = event => event.deltaX > 0;
+const isDown = event => event.deltaY > 0;
 
 export default Component.extend({
   UTILS,
@@ -21,9 +21,17 @@ export default Component.extend({
 
   onMouseWheel(mouseWheelEvent) {
     if (isDown(mouseWheelEvent)) {
-      this.incrementProperty('_startIndex')
+      this.incSI()
     } else {
-      this.decrementProperty('_startIndex')
+      this.decSI()
     }
+  },
+
+  incSI(n=1) {
+    this.incrementProperty('_startIndex', n)
+  },
+
+  decSI(n=1) {
+    this.incrementProperty('_startIndex', this.get('model.length') - n)
   }
 });

@@ -1,3 +1,4 @@
+// BEGIN-SNIPPET helpers|compute
 import { helper } from '@ember/component/helper';
 
 export function compute([action, ...params]) {
@@ -5,3 +6,4 @@ export function compute([action, ...params]) {
 }
 
 export default helper(compute);
+// END-SNIPPET

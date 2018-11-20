@@ -10,7 +10,8 @@ module.exports = function(defaults) {
       'importBootstrapCSS': true,
       'insertEmberWormholeElementToDom': false,
       'whitelist': []
-    }
+    },
+    snippetSearchPaths: ['tests/dummy/app', 'addon']
   });
 
   /*
