@@ -1,6 +1,8 @@
 ember-large-list
 ==============================================================================
 
+[see demo here](https://foxnewsnetwork.github.io/ember-large-list/)
+
 Want to render a large list of items in paginated groups, but Ember's DOM teardowns and setups are reducing performance, and "canonical" smoke-and-mirrors patterns (e.g. [ember-collection](https://www.npmjs.com/package/ember-collection)) is causing memory-leak crashes?
 
 This addon is for you.

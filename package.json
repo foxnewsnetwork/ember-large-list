@@ -5,8 +5,15 @@
   "keywords": [
     "ember-addon",
     "collection",
-    "array"
+    "array",
+    "list",
+    "performance",
+    "rendering",
+    "dom",
+    "recycling",
+    "element"
   ],
+  "homepage": "http://foxnewsnetwork.github.io/ember-large-list",
   "repository": "git@github.com:foxnewsnetwork/ember-large-list.git",
   "license": "MIT",
   "author": "Thomas Chen",
