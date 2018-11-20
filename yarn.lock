@@ -2439,6 +2439,14 @@ ember-cli-get-component-path-option@^1.0.0:
   resolved "https://registry.yarnpkg.com/ember-cli-get-component-path-option/-/ember-cli-get-component-path-option-1.0.0.tgz#0d7b595559e2f9050abed804f1d8eff1b08bc771"
   integrity sha1-DXtZVVni+QUKvtgE8djv8bCLx3E=
 
+ember-cli-github-pages@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/ember-cli-github-pages/-/ember-cli-github-pages-0.2.1.tgz#154ade6e76a541eb95b1d62459ef8efddef103e4"
+  integrity sha512-XGv3PfAlKGXC27MyzMk0jgCFoucGLOg40xfMLJKzmu7be7QrKEN8G6UtUhYOZffMpu2t88BQ3uxYIrLyRx/FyQ==
+  dependencies:
+    ember-cli-version-checker "^2.1.0"
+    rsvp "^4.7.0"
+
 ember-cli-htmlbars-inline-precompile@^1.0.0, ember-cli-htmlbars-inline-precompile@^1.0.3:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars-inline-precompile/-/ember-cli-htmlbars-inline-precompile-1.0.5.tgz#312e050c9e3dd301c55fb399fd706296cd0b1d6a"
@@ -2716,6 +2724,14 @@ ember-export-application-global@^2.0.0:
   integrity sha1-jW12GayKGj+MQwA1Sesh6+1oW9I=
   dependencies:
     ember-cli-babel "^6.0.0-beta.7"
+
+ember-fork-me@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ember-fork-me/-/ember-fork-me-2.0.0.tgz#30a6b188e59255dfa40d32538aa6f457bf62c399"
+  integrity sha512-1VTzLQ+umo99Y9kDaGNjkgNGjk1AcBOMKVPJqOKBWqv5zL/1hWGcY7cG1B9H8dzxp/h1TMYf0I2U6mMRVutMRA==
+  dependencies:
+    ember-cli-babel "^6.6.0"
+    ember-cli-htmlbars "^2.0.1"
 
 ember-in-element-polyfill@^0.1.2:
   version "0.1.3"
