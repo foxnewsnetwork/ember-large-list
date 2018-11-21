@@ -1,0 +1,28 @@
+<h2>Animations</h2>
+
+<p>One of the biggest reasons why we care about not flooding the DOM is because it causes our animations to jank</p>
+
+<p>Using the paradigm of this addon, how would we do animations?</p>
+
+<h3>Viewport Solution</h3>
+
+<p>Say we're asked to build a left-right carousel:</p>
+
+<ul>
+  <li>Scrolls left and right smoothly</li>
+  <li>Navigates using the arrow keys</li>
+  <li>Wraps around</li>
+</ul>
+
+{{!-- BEGIN-SNIPPET components|reducer-animation|template --}}
+{{#animation-viewport}}
+  {{#large-list
+    items=@model
+    startIndex=this.startIndex
+    perPage=this.perPage
+  as |game|
+  }}
+    {{game-card game=game}}
+  {{/large-list}}
+{{/animation-viewport}}
+{{!-- END-SNIPPET --}}

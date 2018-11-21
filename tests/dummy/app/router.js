@@ -10,6 +10,7 @@ Router.map(function() {
   this.route('home', { path: '/' });
   this.route('how-it-works');
   this.route('install');
+  this.route('animation');
 });
 
 export default Router;
