@@ -3,25 +3,29 @@
   (compute
   this.UTILS.add
   @startIndex
-  @perPage) as |endIndex|}}
-{{#let
-  (compute
-  this.UTILS.slice
-  @startIndex
-  endIndex
-  @items) as |subSectionItems|}}
+  @perPage)
+as |endIndex|
+}}
+  {{#let
+    (compute
+    this.UTILS.slice
+    @startIndex
+    endIndex
+    @items)
+  as |subSectionItems|
+  }}
 
-{{#each (compute this.UTILS.range 0 @perPage) as |index|}}
-  {{#if (compute this.UTILS.gt subSectionItems.length index)}}
-    {{yield
-      (get subSectionItems index)
-      (compute this.UTILS.add @startIndex index)
-    }}
-  {{else}}
-    {{yield null (compute this.UTILS.add @startIndex index) to="inverse"}}
-  {{/if}}
-{{/each}}
+    {{#each (compute this.UTILS.range 0 @perPage) as |index|}}
+      {{#if (compute this.UTILS.gt subSectionItems.length index)}}
+        {{yield
+          (get subSectionItems index)
+          (compute this.UTILS.add @startIndex index)
+        }}
+      {{else}}
+        {{yield null (compute this.UTILS.add @startIndex index) to="inverse"}}
+      {{/if}}
+    {{/each}}
 
-{{/let}}
+  {{/let}}
 {{/let}}
 {{!-- END-SNIPPET --}}
