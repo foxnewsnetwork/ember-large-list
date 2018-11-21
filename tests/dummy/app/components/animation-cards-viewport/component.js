@@ -3,5 +3,5 @@ import layout from './template';
 
 export default Component.extend({
   layout,
-  classNames: ["animation-viewport__container"]
+  classNames: ["animation-cards-viewport__container"]
 });

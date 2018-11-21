@@ -31,5 +31,16 @@
 }
 
 .animation-viewport__container {
-  display: flex;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.animation-viewport__row {
+  width: 108rem;
+  transition: transform 500ms ease-in-out;
+  transform: translateX(-18rem);
+}
+
+.animation-viewport__row--animating {
+
 }
