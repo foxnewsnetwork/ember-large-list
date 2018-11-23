@@ -5,5 +5,5 @@ export default Component.extend({
   layout,
   tagName: '',
   startIndex: 0,
-  perPage: 4
+  perPage: 6
 });

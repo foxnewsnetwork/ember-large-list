@@ -30,17 +30,26 @@
   height: auto;
 }
 
-.animation-viewport__container {
+.animation-cards-viewport__container {
   overflow-x: hidden;
   width: 100%;
 }
 
-.animation-viewport__row {
+.animation-cards-viewport__container--anime-left
+.animation-cards-viewport__row {
+  transform: translateX(18rem);
+}
+
+.animation-cards-viewport__container--anime-right
+.animation-cards-viewport__row {
+  transform: translateX(0);
+}
+
+.animation-cards-viewport__row {
+  display: flex;
   width: 108rem;
   transition: transform 500ms ease-in-out;
   transform: translateX(-18rem);
 }
 
-.animation-viewport__row--animating {
 
-}

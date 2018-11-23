@@ -1,3 +1,5 @@
-<div class="animation-cards-viewport__row">
-  {{yield}}
-</div>
+{{#let (compute this.bem "row") as |rowClassName|}}
+  <div class={{rowClassName}}>
+    {{yield}}
+  </div>
+{{/let}}
