@@ -15,14 +15,39 @@
 </ul>
 
 {{!-- BEGIN-SNIPPET components|reducer-animation|template --}}
-{{#animation-cards-viewport this.startIndex as |startIndex|}}
+{{#animation-cards-viewport this._startIndex as |startIndex|}}
   {{#large-list
+    UTILS=this.CarouselUtils
     items=@model
-    startIndex=this.startIndex
+    startIndex=startIndex
     perPage=this.perPage
-  as |game|
+  as |game index|
   }}
-    {{game-card game=game}}
+    {{#let (compute this.UTILS.wrap index @model.length) as |localIndex|}}
+      {{#let (compute this.UTILS.eq startIndex (compute this.shiftRight localIndex @model.length)) as |isActive| }}
+        {{game-card
+          isActive=isActive
+          game=(get @model localIndex)
+        }}
+      {{/let}}
+    {{/let}}
   {{/large-list}}
 {{/animation-cards-viewport}}
 {{!-- END-SNIPPET --}}
+
+{{on-navkey
+  on-left=(action this.decSI)
+  on-right=(action this.incSI)
+}}
+
+<ul>
+  <li>
+    <button {{action this.decSI}}>
+      -
+    </button>
+    this.startIndex: {{this.startIndex}}
+    <button {{action this.incSI}}>
+      +
+    </button>
+  </li>
+</ul>

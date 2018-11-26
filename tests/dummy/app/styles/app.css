@@ -35,21 +35,18 @@
   width: 100%;
 }
 
-.animation-cards-viewport__container--anime-left
-.animation-cards-viewport__row {
-  transform: translateX(18rem);
-}
-
-.animation-cards-viewport__container--anime-right
-.animation-cards-viewport__row {
-  transform: translateX(0);
-}
-
 .animation-cards-viewport__row {
   display: flex;
   width: 108rem;
-  transition: transform 500ms ease-in-out;
   transform: translateX(-18rem);
 }
 
+.animation-cards-viewport__row--anime-left {
+  transition: transform 500ms ease-in-out;
+  transform: translateX(-36rem);
+}
 
+.animation-cards-viewport__row--anime-right {
+  transition: transform 500ms ease-in-out;
+  transform: translateX(0);
+}

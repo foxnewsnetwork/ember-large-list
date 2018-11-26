@@ -1,10 +1,6 @@
-<img
-  src={{@game.coverUrl}}
-  class="game-card__img card-image-top"
-  alt="game icon url"
->
+<img src={{@game.coverUrl}} class="game-card__img card-image-top" alt="game icon url">
 <ul class="list-group list-group-flush">
-  <li class="list-group-item">
+  <li class="list-group-item {{if isActive "active"}}">
     <strong>{{@game.name}}</strong>
   </li>
   <li class="list-group-item">Viewers: {{@game.viewersCurrent}}</li>

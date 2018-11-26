@@ -1,5 +1,10 @@
-{{#let (compute this.bem "row") as |rowClassName|}}
-  <div class={{rowClassName}}>
-    {{yield}}
-  </div>
-{{/let}}
+{{force (compute this.animation.start)}}
+{{on-destroy this.animation.cancel}}
+
+{{#animation-cards-viewport/-row
+  this.animation.finish
+  animeDirection=this.animeDirection
+  isAnimating=this.isAnimating
+}}
+  {{yield this.delayedAnimatedValue this.isAnimating}}
+{{/animation-cards-viewport/-row}}

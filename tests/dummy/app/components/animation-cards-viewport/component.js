@@ -1,20 +1,66 @@
+import { computed } from '@ember/object';
 import Component from '@ember/component';
 import layout from './template';
 import bem from 'dummy/utils/bem';
-
-const BEM_NAME = "animation-cards-viewport";
+import { calc, compfn } from 'dummy/utils/fn';
+import { BEM_NAME, DIRECTION, AnimeState } from './constants';
 
 const CONTAINER_NAME = bem(BEM_NAME, 'container');
 
-const myBEM = (...xs) => bem(BEM_NAME, ...xs);
+const STATE = {
+  isAnimating: 'isAnimating'
+};
 
-const ANIME_LEFT_CLASS = myBEM('container', 'anime-left');
-const ANIME_RIGHT_CLASS = myBEM('container', 'anime-right');
+const PROPS = {
+  animatedValue: 'animatedValue'
+}
 
 export default Component.extend({
   BEM_NAME,
   layout,
-  bem: myBEM,
   classNames: [CONTAINER_NAME],
-  classNameBindings: [`is-anime-left:${ANIME_LEFT_CLASS}:`, `is-anime-right:${ANIME_RIGHT_CLASS}:`]
+
+  animeDirection: calc(
+    (nextVal, prevVal) => {
+      if (nextVal === prevVal) {
+        return DIRECTION.NONE
+      }
+      if (nextVal > prevVal) {
+        return DIRECTION.LEFT
+      }
+      if (nextVal < prevVal) {
+        return DIRECTION.RIGHT
+      }
+    },
+    PROPS.animatedValue,
+    'delayedAnimatedValue'
+  ),
+
+  delayedAnimatedValue: computed({
+    get() {
+      return this.get(PROPS.animatedValue)
+    }
+  }).readOnly(),
+
+  animation: calc(
+    (start, finish) => {
+      return AnimeState.create({ start, finish })
+    },
+    'startAnimeFn',
+    'finishAnimeFn',
+    PROPS.animatedValue
+  ),
+
+  startAnimeFn: compfn(self => {
+    self.set(STATE.isAnimating, true)
+  }),
+
+  finishAnimeFn: compfn(self => {
+    self.notifyPropertyChange('delayedAnimatedValue');
+    self.set(STATE.isAnimating, false);
+  }),
+
+
+}).reopenClass({
+  positionalParams: [PROPS.animatedValue]
 });
