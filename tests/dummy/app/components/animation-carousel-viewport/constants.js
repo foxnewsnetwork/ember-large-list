@@ -17,4 +17,4 @@ export const AnimeState = EmberObject.extend({
   }
 });
 
-export const BEM_NAME = "animation-cards-viewport";
+export const BEM_NAME = "animation-carousel-viewport";

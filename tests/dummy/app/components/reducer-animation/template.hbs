@@ -15,7 +15,7 @@
 </ul>
 
 {{!-- BEGIN-SNIPPET components|reducer-animation|template --}}
-{{#animation-cards-viewport this._startIndex as |startIndex|}}
+{{#animation-carousel-viewport this._startIndex CarouselUtils=this.CarouselUtils as |startIndex|}}
   {{#large-list
     UTILS=this.CarouselUtils
     items=@model
@@ -23,16 +23,17 @@
     perPage=this.perPage
   as |game index|
   }}
-    {{#let (compute this.UTILS.wrap index @model.length) as |localIndex|}}
-      {{#let (compute this.UTILS.eq startIndex (compute this.shiftRight localIndex @model.length)) as |isActive| }}
-        {{game-card
-          isActive=isActive
-          game=(get @model localIndex)
-        }}
-      {{/let}}
+    {{#let
+      (compute this.UTILS.eq (compute this.CarouselUtils.add startIndex 1) index)
+    as |isActive|
+    }}
+      {{game-card
+        isActive=isActive
+        game=game
+      }}
     {{/let}}
   {{/large-list}}
-{{/animation-cards-viewport}}
+{{/animation-carousel-viewport}}
 {{!-- END-SNIPPET --}}
 
 {{on-navkey

@@ -12,7 +12,8 @@ const STATE = {
 };
 
 const PROPS = {
-  animatedValue: 'animatedValue'
+  animatedValue: 'animatedValue',
+  CarouselUtils: 'CarouselUtils'
 }
 
 export default Component.extend({
@@ -21,17 +22,16 @@ export default Component.extend({
   classNames: [CONTAINER_NAME],
 
   animeDirection: calc(
-    (nextVal, prevVal) => {
-      if (nextVal === prevVal) {
-        return DIRECTION.NONE
-      }
-      if (nextVal > prevVal) {
+    ({ add }, nextVal, prevVal) => {
+      if (nextVal === add(prevVal, 1)) {
         return DIRECTION.LEFT
       }
-      if (nextVal < prevVal) {
+      if (add(nextVal, 1) === prevVal) {
         return DIRECTION.RIGHT
       }
+      return DIRECTION.NONE
     },
+    PROPS.CarouselUtils,
     PROPS.animatedValue,
     'delayedAnimatedValue'
   ),
@@ -59,8 +59,6 @@ export default Component.extend({
     self.notifyPropertyChange('delayedAnimatedValue');
     self.set(STATE.isAnimating, false);
   }),
-
-
 }).reopenClass({
   positionalParams: [PROPS.animatedValue]
 });

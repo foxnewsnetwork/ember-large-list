@@ -17,7 +17,7 @@ as |endIndex|
 
     {{#each (compute this.UTILS.range 0 @perPage) as |index|}}
       {{yield
-        (get subSectionItems index)
+        (compute this.UTILS.get subSectionItems index)
         (compute this.UTILS.add @startIndex index)
       }}
     {{/each}}

@@ -1,4 +1,6 @@
 // BEGIN-SNIPPET addon|utils|fn
+export { get } from '@ember/object';
+
 export function slice(start, finish, xs) {
   return (xs || []).slice(start, finish);
 }
