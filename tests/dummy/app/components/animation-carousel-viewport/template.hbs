@@ -1,10 +1,10 @@
 {{force (compute this.animation.start)}}
 {{on-destroy this.animation.cancel}}
 
-{{#animation-cards-viewport/-row
+{{#animation-carousel-viewport/-row
   this.animation.finish
   animeDirection=this.animeDirection
   isAnimating=this.isAnimating
 }}
   {{yield this.delayedAnimatedValue this.isAnimating}}
-{{/animation-cards-viewport/-row}}
+{{/animation-carousel-viewport/-row}}
