@@ -15,7 +15,11 @@
 </ul>
 
 {{!-- BEGIN-SNIPPET components|reducer-animation|template --}}
-{{#animation-carousel-viewport this._startIndex CarouselUtils=this.CarouselUtils as |startIndex|}}
+{{#animation-carousel-viewport
+  this._startIndex
+  CarouselUtils=this.CarouselUtils
+as |startIndex isAnimating|
+}}
   {{#large-list
     UTILS=this.CarouselUtils
     items=@model
@@ -33,13 +37,15 @@
       }}
     {{/let}}
   {{/large-list}}
+
+  {{#unless isAnimating}}
+    {{on-navkey
+      on-left=(action this.decSI 1)
+      on-right=(action this.incSI 1)
+    }}
+  {{/unless}}
 {{/animation-carousel-viewport}}
 {{!-- END-SNIPPET --}}
-
-{{on-navkey
-  on-left=(action this.decSI)
-  on-right=(action this.incSI)
-}}
 
 <ul>
   <li>

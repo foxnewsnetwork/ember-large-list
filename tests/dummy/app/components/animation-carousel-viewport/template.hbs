@@ -1,4 +1,5 @@
 {{force (compute this.animation.start)}}
+{{force (compute this.finishAnimeFn this)}}
 {{on-destroy this.animation.cancel}}
 
 {{#animation-carousel-viewport/-row

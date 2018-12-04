@@ -1,1 +1,4 @@
+{{#on-load (action this.registerHandler this.keyHandler) as |unregister|}}
+  {{on-destroy unregister}}
+{{/on-load}}
 {{yield}}
