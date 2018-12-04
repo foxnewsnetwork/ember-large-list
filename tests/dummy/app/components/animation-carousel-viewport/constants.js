@@ -7,12 +7,19 @@ export const DIRECTION = {
 };
 
 export const AnimeState = EmberObject.extend({
+  onFinish() {
+    const finish = this.get('finish');
+    finish();
+    this.set('finish', () => { })
+  },
+
   cancel() {
     this.set('start', () => { })
     this.set('finish', () => { })
   },
 
   willDestroy() {
+    this.onFinish();
     this.cancel();
   }
 });
