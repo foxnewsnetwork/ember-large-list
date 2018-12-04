@@ -3,7 +3,7 @@ import Component from '@ember/component';
 import layout from './template';
 import bem from 'dummy/utils/bem';
 import { calc, compfn } from 'dummy/utils/fn';
-import { BEM_NAME, DIRECTION, AnimeState } from './constants';
+import { BEM_NAME, DIRECTION } from './constants';
 
 const CONTAINER_NAME = bem(BEM_NAME, 'container');
 
@@ -42,23 +42,20 @@ export default Component.extend({
     }
   }).readOnly(),
 
-  animation: calc(
-    (start, finish) => {
-      return AnimeState.create({ start, finish })
-    },
-    'startAnimeFn',
-    'finishAnimeFn',
-    PROPS.animatedValue
-  ),
+  animeAFF: compfn(self => {
+    const start = () => {
+      self.set(STATE.isAnimating, true)
+    }
 
-  startAnimeFn: compfn(self => {
-    self.set(STATE.isAnimating, true)
+    const finish = () => {
+      self.notifyPropertyChange('delayedAnimatedValue');
+      self.set(STATE.isAnimating, false);
+    }
+
+    return { start, finish }
   }),
 
-  finishAnimeFn: compfn(self => {
-    self.notifyPropertyChange('delayedAnimatedValue');
-    self.set(STATE.isAnimating, false);
-  }),
+  notEq: (a, b) => a !== b,
 }).reopenClass({
   positionalParams: [PROPS.animatedValue]
 });

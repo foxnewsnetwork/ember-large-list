@@ -1,4 +1,17 @@
-{{#on-load (action this.registerHandler this.keyHandler) as |unregister|}}
-  {{on-destroy unregister}}
-{{/on-load}}
-{{yield}}
+{{#let 
+  (hash
+    40=@on-down
+    38=@on-up
+    37=@on-left
+    39=@on-right
+  )
+as |keyMap|
+}}
+  {{#on-load 
+    (action this.registerHandler keyMap) 
+  as |unregister|
+  }}
+    {{on-destroy unregister}}
+  {{/on-load}}
+  {{yield}}
+{{/let}}

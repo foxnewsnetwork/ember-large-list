@@ -1,11 +1,14 @@
-{{force (compute this.animation.start)}}
-{{force (compute this.finishAnimeFn this)}}
-{{on-destroy this.animation.cancel}}
+{{#let (compute this.animeAFF) as |aff|}}
+  {{#if (compute this.notEq @animatedValue this.delayedAnimatedValue)}}
+    {{force (compute aff.start)}}
+  {{/if}}
+  {{on-destroy aff.finish}}
+  {{#animation-carousel-viewport/-row
+    aff.finish
+    animeDirection=this.animeDirection
+    isAnimating=this.isAnimating
+  }}
+    {{yield this.delayedAnimatedValue this.isAnimating}}
+  {{/animation-carousel-viewport/-row}}
+{{/let}}
 
-{{#animation-carousel-viewport/-row
-  this.animation.onFinish
-  animeDirection=this.animeDirection
-  isAnimating=this.isAnimating
-}}
-  {{yield this.delayedAnimatedValue this.isAnimating}}
-{{/animation-carousel-viewport/-row}}
