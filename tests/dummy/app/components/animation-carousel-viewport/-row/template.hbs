@@ -1,5 +1,5 @@
 {{#on-load
-  (action this.registerDOMEventHandler this.element 'transitionend' @onTransitionEnd)
+  (action this.registerDOMEventHandler this.element "transitionend" @onTransitionEnd)
 as |unregister|
 }}
   {{on-destroy unregister}}

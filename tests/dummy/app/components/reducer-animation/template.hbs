@@ -52,3 +52,25 @@
     </button>
   </li>
 </ul>
+
+<h3>
+  Decoupling leads to better animation api
+</h3>
+
+{{code-snippet name="components|reducer-animation|template.hbs"}}
+
+<p>
+  To handle animation, we use an idea popularized by liquid-fire (and, incidentally, react-animation):
+  consume a computed property, fire an action when it changes, then yield out its final value on animation completion.
+</p>
+
+<p>
+  The <code>animation-carousel-viewport</code> component does exactly this (see its implementation in the code base)
+</p>
+
+<p>
+  Because we've decoupled the list rendering from the animation, we can be agnostic about how we actually animate.
+  In this example, animation is handled via CSS:
+</p>
+
+{{code-snippet name="styles|app.css"}}
