@@ -5,6 +5,9 @@ module.exports = {
   ignore: [
     './node_modules/**',
     './vendor/**',
-    './tests/dummy/**'
-  ]
+    './tests/dummy/**' // this does not work
+  ],
+  rules: {
+    'attribute-indentation': false
+  }
 };

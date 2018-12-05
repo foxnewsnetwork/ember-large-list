@@ -20,9 +20,11 @@ module('Integration | Component | large-list', function(hooks) {
     this.set('models', Hits)
     await render(hbs`
       {{#large-list items=this.models startIndex=0 perPage=5 as |model|}}
-        {{model.name}},
-      {{else}}
-        Idol,
+        {{#if model.name}}
+          {{model.name}},
+        {{else}}
+          Idol,
+        {{/if}}
       {{/large-list}}
     `);
   })

@@ -25,7 +25,7 @@ Usage
 
 ```hbs
 <ul>
-  {{#large-list items=data start=0 perPage=5 as |item|}}
+  {{#large-list items=data startIndex=0 perPage=5 as |item|}}
     {{my-row-presentation data=item}}
   {{/large-list}}
 </ul>
@@ -34,14 +34,23 @@ Usage
 
 ### How does it work?
 
-Very simple, instead of using `each`, we use `n.times`. Consider the following pseudo-code hbs
+Very simple, instead of using `each`, we use `n.times`. Consider the following pseudo-code in ruby:
+
+```ruby
+paged_list = items.slice(start_index).take(per_page)
+per_page.times do |i|
+  yield paged_list[i]
+end
+```
+
+We can translate this idea over to hbs and javascript like so:
 
 `large-list/component.js`
 ```javascript
 Component.extend({
   startIndex: 0,
   perPage: 5,
-  bigArray: [
+  items: [
     { name: 'God of War', icon: 'images/god-of-war.png' },
     // ...
   ]
@@ -49,7 +58,7 @@ Component.extend({
 ```
 `large-list/template.hbs`
 ```hbs
-{{#let (take bigArray startIndex perPage) as |smallArray|}}
+{{#let (take items startIndex perPage) as |smallArray|}}
   {{#n-times perPage do |index|}}
     {{my-row-presentation data=(get smallArray index)}}
   {{/n-times}}

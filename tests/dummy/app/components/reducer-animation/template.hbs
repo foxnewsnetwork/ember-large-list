@@ -1,0 +1,82 @@
+<h2>Animations</h2>
+
+<p>One of the biggest reasons why we care about not flooding the DOM is because it causes our animations to jank</p>
+
+<p>Using the paradigm of this addon, how would we do animations?</p>
+
+<h3>Viewport Solution</h3>
+
+<p>Say we're asked to build a left-right carousel:</p>
+
+<ul>
+  <li>Scrolls left and right smoothly</li>
+  <li>Navigates using the arrow keys</li>
+  <li>Wraps around</li>
+</ul>
+
+{{!-- BEGIN-SNIPPET components|reducer-animation|template --}}
+{{#animation-carousel-viewport
+  this._startIndex
+  CarouselUtils=this.CarouselUtils
+as |startIndex isAnimating|
+}}
+  {{#large-list
+    UTILS=this.CarouselUtils
+    items=@model
+    startIndex=startIndex
+    perPage=this.perPage
+  as |game index|
+  }}
+    {{#let
+      (compute this.UTILS.eq (compute this.CarouselUtils.add startIndex 1) index)
+    as |isActive|
+    }}
+      {{game-card
+        isActive=isActive
+        game=game
+      }}
+    {{/let}}
+  {{/large-list}}
+
+  {{#unless isAnimating}}
+    {{on-navkey
+      on-left=(action this.decSI 1)
+      on-right=(action this.incSI 1)
+    }}
+  {{/unless}}
+{{/animation-carousel-viewport}}
+{{!-- END-SNIPPET --}}
+
+<ul>
+  <li>
+    <button {{action this.decSI}}>
+      -
+    </button>
+    this.startIndex: {{this.startIndex}}
+    <button {{action this.incSI}}>
+      +
+    </button>
+  </li>
+</ul>
+
+<h3>
+  Decoupling leads to better animation api
+</h3>
+
+{{code-snippet name="components|reducer-animation|template.hbs"}}
+
+<p>
+  To handle animation, we use an idea popularized by liquid-fire (and, incidentally, react-animation):
+  consume a computed property, fire an action when it changes, then yield out its final value on animation completion.
+</p>
+
+<p>
+  The <code>animation-carousel-viewport</code> component does exactly this (see its implementation in the code base)
+</p>
+
+<p>
+  Because we've decoupled the list rendering from the animation, we can be agnostic about how we actually animate.
+  In this example, animation is handled via CSS:
+</p>
+
+{{code-snippet name="styles|app.css"}}
