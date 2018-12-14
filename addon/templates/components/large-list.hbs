@@ -1,28 +1,20 @@
 {{!-- BEGIN-SNIPPET addon|templates|components|large-list --}}
 {{#let
   (compute
-  this.UTILS.add
+  this.UTILS.skipTake
   @startIndex
-  @perPage)
-as |endIndex|
+  @perPage
+  @items)
+as |subSectionIter|
 }}
-  {{#let
-    (compute
-    this.UTILS.slice
-    @startIndex
-    endIndex
-    @items)
-  as |subSectionItems|
-  }}
 
-    {{#each (compute this.UTILS.range 0 @perPage) as |index|}}
-      {{yield
-        (compute this.UTILS.get subSectionItems index)
-        (compute this.UTILS.add @startIndex index)
-        index
-      }}
-    {{/each}}
+  {{#each (compute this.UTILS.range 0 @perPage) as |index|}}
+    {{yield
+      (compute this.UTILS.get subSectionIter index)
+      (compute this.UTILS.add @startIndex index)
+      index
+    }}
+  {{/each}}
 
-  {{/let}}
 {{/let}}
 {{!-- END-SNIPPET --}}

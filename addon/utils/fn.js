@@ -2,7 +2,24 @@ import { isArray } from '@ember/array';
 import { isBlank } from '@ember/utils';
 
 // BEGIN-SNIPPET addon|utils|fn
-export { get } from '@ember/object';
+export function get(it, _index) {
+  const { value, done } = it.next();
+  if (done) {
+    return;
+  } else {
+    return value;
+  }
+}
+
+export function skipTake(start, amount, xs) {
+  if (isArray(xs)) {
+    return xs.slice(start, start + amount)[Symbol.iterator]();
+  } else if (typeof xs[Symbol.iterator] === 'function') {
+    return take(skip(xs, start), amount);
+  } else {
+    return [][Symbol.iterator]();
+  }
+}
 
 export function skip(it, n = 0) {
   for (let i = 0; i < n; i++) {
@@ -13,17 +30,12 @@ export function skip(it, n = 0) {
 
 export function* take(it, n = 6) {
   for (let i = 0; i < n; i++) {
-    yield it.next();
-  }
-}
-
-export function slice(start, finish, xs) {
-  if (isArray(xs)) {
-    return xs.slice(start, finish);
-  } else if (isBlank(xs)) {
-    return [];
-  } else if (typeof xs[Symbol.iterator] === 'function') {
-    return take(skip(xs, start), finish - start);
+    const { value, done } = it.next();
+    if (done) {
+      break;
+    } else {
+      yield value;
+    }
   }
 }
 
