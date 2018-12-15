@@ -25,8 +25,10 @@ Usage
 
 ```hbs
 <ul>
-  {{#large-list items=data startIndex=0 perPage=5 as |item|}}
+  {{#large-list items=data startIndex=0 perPage=5 as |item globalIndex localIndex|}}
     {{my-row-presentation data=item}}
+    {{!-- globalIndex goes from 0 to (data.length - 1) --}}
+    {{!-- localIndex goes from 0 to (perPage - 1) --}}
   {{/large-list}}
 </ul>
 ```
