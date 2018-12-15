@@ -3,7 +3,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-module('Integration | Component | large-list', function(hooks) {
+module('Integration | Component | large-list', function (hooks) {
   setupRenderingTest(hooks);
 
   const Fire = {
@@ -25,7 +25,7 @@ module('Integration | Component | large-list', function(hooks) {
     name: "MICDrop"
   };
   const Hits = [Fire, FakeLove, BloodSweatTears, Idol, DNA, MicDrop];
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     this.set('models', Hits)
     this.set('startIndex', 1)
     this.set('perPage', 3)
@@ -45,7 +45,7 @@ module('Integration | Component | large-list', function(hooks) {
     `${BloodSweatTears.name}-2-1`,
     `${Idol.name}-3-2`
   ].join(',') + ",";
-  test('it renders', async function(assert) {
+  test('it renders', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
     // Template block usage:
@@ -55,7 +55,7 @@ module('Integration | Component | large-list', function(hooks) {
   });
 
   module("Changing startIndex", (hooks) => {
-    hooks.beforeEach(function() {
+    hooks.beforeEach(function () {
       this.set('startIndex', 0)
     })
 
@@ -64,7 +64,7 @@ module('Integration | Component | large-list', function(hooks) {
       `${FakeLove.name}-1-1`,
       `${BloodSweatTears.name}-2-2`,
     ].join(',') + ",";
-    test('it should have moved the rendered contents "back"', function(assert) {
+    test('it should have moved the rendered contents "back"', function (assert) {
       const actual = this.element.textContent.trim().replace(/\s+/g, "");
       assert.equal(actual, EXPECTED_RESULT);
     })

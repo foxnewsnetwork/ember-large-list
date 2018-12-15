@@ -1,11 +1,8 @@
 // BEGIN-SNIPPET addon|utils|fn
-export function next(it) {
-  const { value, done } = it.next();
-  if (done) {
-    return;
-  } else {
-    return value;
-  }
+export { get } from '@ember/object';
+
+export function toArray(it) {
+  return [...it];
 }
 
 export function* skip(it, n = 0) {

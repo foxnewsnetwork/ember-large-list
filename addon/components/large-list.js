@@ -11,6 +11,6 @@ export default Component.extend({
   startIndex: 0,
   perPage: 5,
   offset: alias('startIndex'),
-  perPage: alias('limit')
+  limit: alias('perPage')
 });
 // END-SNIPPET

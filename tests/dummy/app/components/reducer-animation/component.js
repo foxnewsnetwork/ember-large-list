@@ -1,18 +1,13 @@
 import Component from '../reducer-home/component';
 import layout from './template';
 import * as UTILS from 'ember-large-list/utils/fn';
-import { wrap, calc } from 'dummy/utils/fn';
+import { cycle, wrap, calc } from 'dummy/utils/fn';
 
 // BEGIN-SNIPPET components|reducer-animation|component
 const makeCarouselUtils = length => Object.assign({}, UTILS, {
   add: (a, b) => wrap(a + b, length),
-  slice(start, finish, items) {
-    let output = [];
-    for (let i = start; i != finish; i = wrap(i + 1, length)) {
-      output.push(UTILS.get(items, i));
-    }
-    return output;
-  },
+  skip: (it, n) => UTILS.skip(cycle(it), n),
+  take: (it, n) => UTILS.take(cycle(it), n),
   get: (array, index) => UTILS.get(array, wrap(index, length))
 })
 // END-SNIPPET
