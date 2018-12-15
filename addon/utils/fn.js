@@ -1,8 +1,5 @@
-import { isArray } from '@ember/array';
-import { isBlank } from '@ember/utils';
-
 // BEGIN-SNIPPET addon|utils|fn
-export function get(it, _index) {
+export function next(it) {
   const { value, done } = it.next();
   if (done) {
     return;
@@ -11,30 +8,26 @@ export function get(it, _index) {
   }
 }
 
-export function skipTake(start, amount, xs) {
-  if (isArray(xs)) {
-    return xs.slice(start, start + amount)[Symbol.iterator]();
-  } else if (typeof xs[Symbol.iterator] === 'function') {
-    return take(skip(xs, start), amount);
-  } else {
-    return [][Symbol.iterator]();
+export function* skip(it, n = 0) {
+  let i = 0;
+  for (const val of it) {
+    if (i < n) {
+      i++;
+      continue;
+    } else {
+      yield val;
+    }
   }
-}
-
-export function skip(it, n = 0) {
-  for (let i = 0; i < n; i++) {
-    it.next();
-  }
-  return it;
 }
 
 export function* take(it, n = 6) {
-  for (let i = 0; i < n; i++) {
-    const { value, done } = it.next();
-    if (done) {
-      break;
+  let i = 0;
+  for (const val of it) {
+    if (i < n) {
+      i++;
+      yield val;
     } else {
-      yield value;
+      break;
     }
   }
 }
