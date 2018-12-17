@@ -33,6 +33,7 @@ Usage
 </ul>
 ```
 
+>note: you can also use `offset` and `limit` instead of `startIndex` and `perPage`; they are aliased
 
 ### How does it work?
 
