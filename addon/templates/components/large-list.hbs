@@ -1,28 +1,35 @@
+{{!-- Even though `skip` does do anything with @perPage, and `take`
+doesn't use @startIndex, We still pass it in so that compute will
+properly re-compute when it changes
+--}}
 {{!-- BEGIN-SNIPPET addon|templates|components|large-list --}}
 {{#let
   (compute
-  this.UTILS.add
-  @startIndex
-  @perPage)
-as |endIndex|
+    this.UTILS.skip
+    @items
+    @startIndex
+    @perPage
+  )
+as |offsetItems|
 }}
   {{#let
     (compute
-    this.UTILS.slice
-    @startIndex
-    endIndex
-    @items)
-  as |subSectionItems|
+      this.UTILS.take
+      offsetItems
+      @perPage
+      @startIndex
+    )
+  as |slicedIt|
   }}
-
-    {{#each (compute this.UTILS.range 0 @perPage) as |index|}}
-      {{yield
-        (compute this.UTILS.get subSectionItems index)
-        (compute this.UTILS.add @startIndex index)
-        index
-      }}
-    {{/each}}
-
+    {{#let (compute this.UTILS.toArray slicedIt @startIndex @perPage) as |slicedItems|}}
+      {{#each (compute this.UTILS.range 0 @perPage) as |index|}}
+        {{yield
+          (compute this.UTILS.get slicedItems index)
+          (compute this.UTILS.add @startIndex index)
+          index
+        }}
+      {{/each}}
+    {{/let}}
   {{/let}}
 {{/let}}
 {{!-- END-SNIPPET --}}

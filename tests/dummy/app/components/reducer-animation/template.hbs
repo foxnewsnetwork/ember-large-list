@@ -66,6 +66,24 @@ as |startIndex isAnimating|
 {{code-snippet name="components|reducer-animation|template.hbs"}}
 
 <p>
+  Because the <code>large-list</code> component is simply a simple chaining of the following utility functions:
+</p>
+
+<ul>
+  <li><code>skip = (Iterator, number) => Iterator</code></li>
+  <li><code>take = (Iterator, number) => Iterator</code></li>
+  <li><code>toArray = Iterator => Array</code></li>
+  <li><code>get = (Array, number) => Obj</code></li>
+  <li><code>add = (number, numeber) => number</code></li>
+</ul>
+
+<p>
+  We can customize the <code>UTILS</code> passed to perform cyclic carousel behavior like so:
+</p>
+
+{{code-snippet name="components|reducer-animation|component.js"}}
+
+<p>
   To handle animation, we use an idea popularized by liquid-fire (and, incidentally, react-animation):
   consume a computed property, fire an action when it changes, then yield out its final value on animation completion.
 </p>

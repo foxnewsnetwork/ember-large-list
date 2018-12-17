@@ -44,3 +44,8 @@ export function between(min, max) {
 export function wrap(x, length) {
   return x - div(x, length) * length;
 }
+
+export function* cycle(it) {
+  yield* it;
+  yield* cycle(it);
+}
