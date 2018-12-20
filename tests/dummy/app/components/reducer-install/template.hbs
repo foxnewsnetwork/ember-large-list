@@ -1,0 +1,38 @@
+<h2>Installation</h2>
+
+<p>Because we are an unassuming package, installation is easy</p>
+
+<h4>
+  <code>
+    ember install ember-large-list
+  </code>
+</h4>
+
+
+<h3>Caveat</h3>
+
+<p>The <strong>only</strong> hard dependency this library has is the <code>compute</code> helper</p>
+
+<p>Like the <code>get</code> and <code>let</code> helpers which are common enough to have already been elevated into
+  being a part of ember itself, the <code>compute</code> is super common and so I won't provide you with one.</p>
+
+
+<p>For those who don't have it in their code-base, you can: </p>
+
+<ul>
+  <li>
+    Install <a href="https://github.com/DockYard/ember-composable-helpers#compute">ember-composable-helpers</a> which
+    ships with it
+  </li>
+  <li>
+    Copy and paste the following into your <code>app/helpers/compute.js</code>:
+
+    {{code-snippet name="helpers|compute.js"}}
+  </li>
+</ul>
+
+<h3>Do I Even Need This Addon?</h3>
+
+<p>Not really, the idea behind how to build a performant DOM recycler turns to be so incredibly simple installing this
+  package won't save you much time once you grasp the core idea behind it (see the {{#link-to "how-it-works"}}how it
+    works{{/link-to}} section)</p>

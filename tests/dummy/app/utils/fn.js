@@ -12,6 +12,8 @@ export function div(n, x) {
   return Math.floor(n / x);
 }
 
+export const curry = (fn, ...args) => (...rest) => fn(...args, ...rest);
+
 export function calc(fn, ...depKeys) {
   return computed(...depKeys, {
     get() {
@@ -19,6 +21,19 @@ export function calc(fn, ...depKeys) {
       return fn(...vals);
     }
   }).readOnly()
+}
+
+export function calcOnce(fn, ...depKeys) {
+  return computed({
+    get() {
+      const vals = depKeys.map((key) => this.get(key));
+      return fn(...vals);
+    }
+  }).readOnly()
+}
+
+export function once(key) {
+  return calcOnce(x => x, key);
 }
 
 export function compfn(fn) {

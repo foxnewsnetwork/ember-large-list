@@ -6,11 +6,23 @@ const Router = EmberRouter.extend({
   rootURL: config.rootURL
 });
 
-Router.map(function() {
-  this.route('home', { path: '/' });
-  this.route('how-it-works');
-  this.route('install');
-  this.route('animation');
+export const Routes = {
+  Home: 'home',
+  HowItWorks: 'how-it-works',
+  Install: 'install',
+  Animation: 'animation',
+  NestedAnimation: 'nested-animation',
+}
+
+const RouteOptsMap = new Map([
+  [Routes.Home, { path: '/' }]
+]);
+
+Router.map(function () {
+  for (const key in Routes) {
+    const route = Routes[key]
+    this.route(route, RouteOptsMap.get(route))
+  }
 });
 
 export default Router;

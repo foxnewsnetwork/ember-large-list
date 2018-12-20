@@ -3,12 +3,11 @@
     {{force (compute aff.start)}}
   {{/if}}
   {{on-destroy aff.finish}}
-  {{#animation-carousel-viewport/-row
+  {{#animation-carousel-viewport/-inner
     aff.finish
     animeDirection=this.animeDirection
     isAnimating=this.isAnimating
   }}
     {{yield this.delayedAnimatedValue this.isAnimating}}
-  {{/animation-carousel-viewport/-row}}
+  {{/animation-carousel-viewport/-inner}}
 {{/let}}
-

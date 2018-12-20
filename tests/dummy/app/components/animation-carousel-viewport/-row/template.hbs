@@ -1,7 +1,0 @@
-{{#on-load
-  (action this.registerDOMEventHandler this.element "transitionend" @onTransitionEnd)
-as |unregister|
-}}
-  {{on-destroy unregister}}
-{{/on-load}}
-{{yield}}

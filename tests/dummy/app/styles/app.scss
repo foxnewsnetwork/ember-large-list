@@ -1,4 +1,5 @@
-@import "bd.css";
+@import "ember-bootstrap/bootstrap";
+@import "./bd";
 
 .how-it-works__twiddle-ctn {
   position: relative;
@@ -36,18 +37,18 @@
 }
 
 /* BEGIN-SNIPPET styles|app */
-.animation-carousel-viewport__row {
+.animation-carousel-viewport__inner {
   display: flex;
   width: 108rem;
   transform: translateX(-18rem);
 }
 
-.animation-carousel-viewport__row--anime-left {
+.animation-carousel-viewport__inner--anime-left {
   transition: transform 500ms ease-in-out;
   transform: translateX(-36rem);
 }
 
-.animation-carousel-viewport__row--anime-right {
+.animation-carousel-viewport__inner--anime-right {
   transition: transform 500ms ease-in-out;
   transform: translateX(0);
 }

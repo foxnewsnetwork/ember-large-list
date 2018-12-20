@@ -1,0 +1,9 @@
+<nav class="collapse bd-links">
+  {{#each-in this.Routes as |routeName routePath|}}
+    <div class="bd-toc-item">
+      {{#link-to routePath class="bd-toc-link"}}
+        {{routeName}}
+      {{/link-to}}
+    </div>
+  {{/each-in}}
+</nav>
