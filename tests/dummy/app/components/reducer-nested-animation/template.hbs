@@ -1,0 +1,11 @@
+{{#model-aff this.getGames as |state|}}
+  {{#if state.status.isBusy}}
+    Now Loading...
+  {{else if state.status.isIdle}}
+    Idle for some reason
+  {{else if state.status.isSuccess}}
+    {{reducer-nested-animation/reducer-page model=state.model}}
+  {{else}}
+    Error Loading
+  {{/if}}
+{{/model-aff}}

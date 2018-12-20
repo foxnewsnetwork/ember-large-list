@@ -1,9 +1,20 @@
-<img src={{@game.coverUrl}} alt="game icon" class="rounded image__square">
-<div class="flex-column align-items-start">
-  <h5 class="mb-1">{{@game.name}}</h5>
-</div>
-<div class="flex-column align-items-start">
-  <span class="badge badge-primary badge-pill">
-    {{@game.viewersCurrent}}
-  </span>
-</div>
+{{#if @game.coverUrl}}
+  <img src={{@game.coverUrl}} alt="game icon" class="rounded image__square">
+  <div class="flex-column align-items-start">
+    <h5 class="mb-1">{{@game.name}}</h5>
+  </div>
+  <div class="flex-column align-items-start">
+    <span class="badge badge-primary badge-pill">
+      {{@game.viewersCurrent}}
+    </span>
+  </div>
+{{else}}
+  <div class="flex-column align-items-start">
+    <h5 class="mb-1">Missing Game Art</h5>
+  </div>
+  <div class="flex-column align-items-start">
+    <span class="badge badge-primary badge-pill">
+      Missing Viewers Count
+    </span>
+  </div>
+{{/if}}

@@ -1,0 +1,40 @@
+<h2 id="title">Large List Demo</h2>
+<p>Use your mouse scroll wheel or the arrow keys to navigate list</p>
+
+<h3>
+  Total Games: {{@model.length}}
+</h3>
+
+<div class="list-group">
+  {{!-- BEGIN-SNIPPET components|reducer-home|large-list --}}
+  {{#large-list
+    items=@model
+    startIndex=this.startIndex
+    perPage=this.perPage
+  as |game|
+  }}
+    {{game-row game=game}}
+  {{/large-list}}
+  {{!-- END-SNIPPET --}}
+</div>
+
+<ul>
+  <li>
+    Page: {{this.currentPage}} of {{this.totalPages}}
+  </li>
+  <li>{{this.perPage}} per page</li>
+</ul>
+
+{{on-navkey
+  on-left=(action this.decSI this.perPage)
+  on-right=(action this.incSI this.perPage)
+  on-up=(action this.decSI 1)
+  on-down=(action this.incSI 1)
+}}
+{{on-wheel (action this.onMouseWheel)}}
+
+<h4>Usage</h4>
+
+<p>Note that you <strong>must</strong> provide an array of items</p>
+
+{{code-snippet name="components|reducer-home|large-list.hbs"}}

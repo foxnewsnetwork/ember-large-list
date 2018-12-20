@@ -2,7 +2,7 @@ import { computed } from '@ember/object';
 import Component from '@ember/component';
 import layout from './template';
 import bem from 'dummy/utils/bem';
-import { calc, compfn } from 'dummy/utils/fn';
+import { calc, compfn, once } from 'dummy/utils/fn';
 import { BEM_NAME, DIRECTION } from './constants';
 
 const CONTAINER_NAME = bem(BEM_NAME, 'container');
@@ -24,10 +24,10 @@ export default Component.extend({
   animeDirection: calc(
     ({ add }, nextVal, prevVal) => {
       if (nextVal === add(prevVal, 1)) {
-        return DIRECTION.LEFT
+        return DIRECTION.PREV
       }
       if (add(nextVal, 1) === prevVal) {
-        return DIRECTION.RIGHT
+        return DIRECTION.NEXT
       }
       return DIRECTION.NONE
     },
@@ -36,11 +36,7 @@ export default Component.extend({
     'delayedAnimatedValue'
   ),
 
-  delayedAnimatedValue: computed({
-    get() {
-      return this.get(PROPS.animatedValue)
-    }
-  }).readOnly(),
+  delayedAnimatedValue: once(PROPS.animatedValue),
 
   animeAFF: compfn(self => {
     const start = () => {

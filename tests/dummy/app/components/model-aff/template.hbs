@@ -1,0 +1,18 @@
+{{#let (compute this._startRequest this._onError this._onSuccess) as |cancel|}}
+  {{#let (compute this.curry cancel this._cancelError this._cancelerError this._cancelSuccess) as |cancelFn|}}
+    {{on-destroy cancelFn}}
+
+    {{yield
+      (hash
+        model=this.model
+        status=this.status
+        error=this.error
+      )
+      (hash
+        refresh=(action this.notifyPropertyChange "_startRequest")
+        cancel=cancelFn
+      )
+    }}
+  {{/let}}
+
+{{/let}}

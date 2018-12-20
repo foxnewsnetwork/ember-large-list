@@ -1,7 +1,7 @@
 export const DIRECTION = {
-  LEFT: 'LEFT',
-  RIGHT: 'RIGHT',
-  NONE: 'NONE'
+  PREV: { isPrev: true, isNext: false },
+  NEXT: { isPrev: false, isNext: true, },
+  NONE: { isPrev: false, isNext: false },
 };
 
 export const BEM_NAME = "animation-carousel-viewport";
